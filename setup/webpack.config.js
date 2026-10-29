@@ -1,4 +1,4 @@
-const { assertSupportedNodeVersion } = require('../src/Engine');
+const { assertSupportedNodeVersion } = require('../dist/Engine');
 
 module.exports = async () => {
     // @ts-ignore
@@ -6,7 +6,7 @@ module.exports = async () => {
 
     assertSupportedNodeVersion();
 
-    const mix = require('../src/Mix').primary;
+    const mix = require('../dist/Mix').primary;
 
     require(mix.paths.mix());
 

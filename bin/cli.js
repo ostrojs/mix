@@ -6,7 +6,7 @@ const { Command } = require('commander');
 const { spawn } = require('child_process');
 const path = require('path');
 const pkg = require('../package.json');
-const { assertSupportedNodeVersion } = require('../src/Engine.js');
+const { assertSupportedNodeVersion } = require('../dist/Engine');
 
 run().catch(err => {
     console.error(err);

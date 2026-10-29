@@ -1,5 +1,5 @@
-const mix = require('../src/index');
-const Mix = require('../src/Mix');
+const mix = require('../dist/index');
+const Mix = require('../dist/Mix');
 
 describe('Ostro Mix Core Plugin', () => {
     test('exports mix api', () => {
@@ -23,7 +23,7 @@ describe('Ostro Mix Core Plugin', () => {
 
     test('sees detects ostro assistant file when present', () => {
         const instance = Mix.primary;
-        const File = require('../src/File');
+        const File = require('../dist/File');
         const origExists = File.exists;
         try {
             File.exists = (p) => p === './assistant';

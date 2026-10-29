@@ -2,8 +2,8 @@
     "name": "@ostro/mix",
     "version": "2.0.0-alpha.1",
     "description": "Ostro Mix is an elegant wrapper around Webpack for the OstroJS ecosystem.",
-    "main": "src/index.js",
-    "types": "types/index.d.ts",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "bin": {
         "ostro-mix": "bin/cli.js",
         "mix": "bin/cli.js"
@@ -12,7 +12,7 @@
         "bin",
         "icons",
         "setup",
-        "src",
+        "dist",
         "types",
         "LICENSE.md",
         "README.md"
@@ -20,9 +20,11 @@
     "scripts": {
         "ostro-mix": "./bin/cli.js",
         "mix": "./bin/cli.js",
+        "build": "rm -rf dist && tsc",
+        "prepublishOnly": "npm run build",
         "test": "jest",
-        "clean": "rm -rf coverage",
-        "lint:check": "tsc --noEmit --skipLibCheck -p ."
+        "clean": "rm -rf dist coverage",
+        "lint:check": "tsc --noEmit"
     },
     "keywords": [
         "ostro",
