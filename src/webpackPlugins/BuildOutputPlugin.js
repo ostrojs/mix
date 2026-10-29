@@ -2,8 +2,15 @@ const _ = require('lodash');
 const chalk = require('chalk');
 const Table = require('cli-table3');
 const readline = require('readline');
-const stripAnsi = require('strip-ansi');
-const { formatSize } = require('webpack/lib/SizeFormatHelpers');
+function formatSize(size) {
+    if (typeof size !== 'number' || Number.isNaN(size) || size === 0) {
+        return '0 bytes';
+    }
+    const units = ['bytes', 'KiB', 'MiB', 'GiB'];
+    const i = Math.floor(Math.log(size) / Math.log(1024));
+    const converted = size / Math.pow(1024, i);
+    return `${converted.toFixed(2).replace(/\.00$/, '')} ${units[i] || 'bytes'}`;
+}
 const { version } = require('../../package.json');
 
 /**

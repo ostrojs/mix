@@ -1,19 +1,35 @@
 const mix = require('../src/index');
+const Mix = require('../src/Mix');
 
 describe('Ostro Mix Core Plugin', () => {
-    test('exports mix singleton and api', () => {
+    test('exports mix api', () => {
         expect(mix).toBeDefined();
         expect(typeof mix.js).toBe('function');
         expect(typeof mix.postCss).toBe('function');
         expect(typeof mix.version).toBe('function');
+        expect(typeof mix.options).toBe('function');
+        expect(typeof mix.inProduction).toBe('function');
     });
 
-    test('sees ostro environment', () => {
-        expect(mix.sees('ostro')).toBe(false);
+    test('Mix.primary instance methods', () => {
+        const instance = Mix.primary;
+        expect(instance).toBeDefined();
+        expect(instance.sees('ostro')).toBe(false);
+        expect(instance.config).toBeDefined();
+        expect(instance.config.manifest).toBe('mix-manifest.json');
+        expect(instance.isWatching()).toBe(false);
+        expect(typeof instance.inProduction()).toBe('boolean');
     });
 
-    test('config has default options', () => {
-        expect(mix.config).toBeDefined();
-        expect(mix.config.manifest).toBe('mix-manifest.json');
+    test('sees detects ostro assistant file when present', () => {
+        const instance = Mix.primary;
+        const File = require('../src/File');
+        const origExists = File.exists;
+        try {
+            File.exists = (p) => p === './assistant';
+            expect(instance.sees('ostro')).toBe(true);
+        } finally {
+            File.exists = origExists;
+        }
     });
 });
