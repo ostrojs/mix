@@ -1,6 +1,6 @@
 {
     "name": "@ostro/mix",
-    "version": "2.0.0-alpha.1",
+    "version": "2.0.0-alpha.2",
     "description": "Ostro Mix is an elegant wrapper around Webpack for the OstroJS ecosystem.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
